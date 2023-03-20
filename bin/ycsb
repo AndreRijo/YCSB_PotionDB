@@ -102,7 +102,8 @@ DATABASES = {
     "solr7"        : "site.ycsb.db.solr7.SolrClient",
     "tarantool"    : "site.ycsb.db.TarantoolClient",
     "tablestore"   : "site.ycsb.db.tablestore.TableStoreClient",
-    "zookeeper"    : "site.ycsb.db.zookeeper.ZKClient"
+    "zookeeper"    : "site.ycsb.db.zookeeper.ZKClient",
+    "potiondb"     : "site.ycsb.db.PotiondbClient"
 }
 
 OPTIONS = {
@@ -215,7 +216,8 @@ def get_classpath_from_maven(module):
                                    "-am", "package", "-DskipTests",
                                    "dependency:build-classpath",
                                    "-DincludeScope=compile",
-                                   "-Dmdep.outputFilterFile=true"])
+                                   "-Dmdep.outputFilterFile=true",
+                                   "-Dcheckstyle.skip"])
         # the above outputs a "classpath=/path/tojar:/path/to/other/jar" for each module
         # the last module will be the datastore binding
         line = [x for x in mvn_output.splitlines() if x.startswith("classpath=")][-1:]
